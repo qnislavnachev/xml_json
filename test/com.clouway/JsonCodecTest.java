@@ -23,7 +23,7 @@ public class JsonCodecTest {
    * @throws Exception
    */
   @Test
-  public void marshallingListOfObjectsToJson() throws Exception {
+  public void marshall() throws Exception {
     listOfObjects.add(new Product(1, "apple", 1.0d));
     listOfObjects.add(new Product(2, "pear", 2.0d));
     listOfObjects.add(new Product(3, "peach", 3.0d));
@@ -32,7 +32,7 @@ public class JsonCodecTest {
   }
 
   @Test
-  public void unmarshallingJsonFile() throws Exception {
+  public void unmarshall() throws Exception {
     listOfObjects.add(new Product(1, "apple", 1.0d));
     listOfObjects.add(new Product(2, "pear", 2.0d));
     listOfObjects.add(new Product(3, "peach", 3.0d));

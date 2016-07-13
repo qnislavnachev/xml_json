@@ -24,7 +24,7 @@ public class XmlCodecTest {
    * @throws Exception
    */
   @Test
-  public void marshallingListOfObjectsToXML() throws Exception {
+  public void marshall() throws Exception {
     listOfObjects.add(new Product(1,"apple",1.0d));
     listOfObjects.add(new Product(2,"pear",2.2d));
     listOfObjects.add(new Product(3,"orange",3.3d));
@@ -34,7 +34,7 @@ public class XmlCodecTest {
   }
 
   @Test
-  public void unmarshallingFile() throws Exception {
+  public void unmarshall() throws Exception {
     listOfObjects.add(new Product(1,"apple",1.0d));
     listOfObjects.add(new Product(2,"tomato",2.2d));
     listOfObjects.add(new Product(3,"potato",3.3d));
