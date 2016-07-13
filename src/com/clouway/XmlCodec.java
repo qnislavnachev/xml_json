@@ -12,7 +12,6 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 
 
-
 /**
  * @author Vasil Mitov (v.mitov.clouway@gmail.com)
  */
@@ -30,8 +29,6 @@ public class XmlCodec {
     Marshaller marshaller = jaxbContext.createMarshaller();
     OutputStream os = new FileOutputStream(new File(fileName + ".xml"));
     marshaller.marshal(objects, os);
-
-
     return objects;
   }
 

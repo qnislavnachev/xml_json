@@ -8,7 +8,7 @@ import java.io.*;
  * @author Vasil Mitov (v.mitov.clouway@gmail.com)
  */
 public class JsonCodec {
-  private Gson gson=new Gson();
+  private final Gson gson = new Gson();
 
   public String marshall(ListOfObjects listOfObjects, String fileName) throws IOException {
     BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".json"));
@@ -21,8 +21,7 @@ public class JsonCodec {
     return listOfObjects.toString();
   }
 
-
   public ListOfObjects unmarshall(String filename) throws FileNotFoundException {
-    return gson.fromJson(new BufferedReader(new FileReader(filename+".json")),ListOfObjects.class);
+    return gson.fromJson(new BufferedReader(new FileReader(filename + ".json")), ListOfObjects.class);
   }
 }

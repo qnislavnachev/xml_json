@@ -17,8 +17,9 @@ import java.util.List;
 public class ListOfObjects {
   public ListOfObjects() {
   }
+
   @XmlElement(name = "product")
-   private  List<Object> objects = new LinkedList<>();
+  private List<Object> objects = new LinkedList<Object>();
 
   public void add(Object object) {
     objects.add(object);
@@ -34,7 +35,4 @@ public class ListOfObjects {
             "objects=" + objects +
             '}';
   }
-
-
-
 }

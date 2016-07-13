@@ -12,7 +12,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * @author Vasil Mitov (v.mitov.clouway@gmail.com)
  */
-public class JsonOperationsToMarshallAndUnmarshallObjects {
+public class JsonCodecTest {
   JsonCodec jsonCodec = new JsonCodec();
   ListOfObjects listOfObjects = new ListOfObjects();
   FileReaderForTest fileReaderForTest = new FileReaderForTest();

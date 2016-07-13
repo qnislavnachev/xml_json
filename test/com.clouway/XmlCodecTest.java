@@ -10,7 +10,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * @author Vasil Mitov (v.mitov.clouway@gmail.com)
  */
-public class XmlOperationsToMarshallAndUnmarshallObjects {
+public class XmlCodecTest {
 
 
   private ListOfObjects listOfObjects=new ListOfObjects();
