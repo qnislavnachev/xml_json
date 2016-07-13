@@ -37,4 +37,6 @@ public class XMLCodecConverterTest {
         assertEquals(person1, dummy1);
         assertEquals(person2, dummy2);
     }
+
+
 }
