@@ -2,6 +2,7 @@ package com.clouway;
 
 import org.junit.Test;
 
+
 import java.nio.charset.StandardCharsets;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -15,11 +16,6 @@ public class XmlCodecTest {
   private XmlCodec xmlCodec = new XmlCodec(listOfObjects, new Product());
   private FileReaderForTest fileReaderForTest = new FileReaderForTest();
 
-  /**
-   * Happy Path
-   *
-   * @throws Exception
-   */
   @Test
   public void marshall() throws Exception {
     listOfObjects.add(new Product(1, "apple", 1.0d));
@@ -37,6 +33,4 @@ public class XmlCodecTest {
     xmlCodec.marshall(listOfObjects, "testXMLUnmarshall");
     assertThat(xmlCodec.unmarshall("testXMLUnmarshall").toString(), is(xmlCodec.marshall(listOfObjects, "testXMLUnmarshall").toString()));
   }
-
-
 }

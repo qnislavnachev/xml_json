@@ -24,12 +24,11 @@ public class XmlCodec {
     this.containedObjects = containedObjects;
   }
 
-  public ListOfObjects marshall(ListOfObjects objects, String fileName) throws JAXBException, FileNotFoundException {
+  public void marshall(ListOfObjects objects, String fileName) throws JAXBException, FileNotFoundException {
     JAXBContext jaxbContext = JAXBContext.newInstance(container.getClass(), containedObjects.getClass());
     Marshaller marshaller = jaxbContext.createMarshaller();
     OutputStream os = new FileOutputStream(new File(fileName + ".xml"));
     marshaller.marshal(objects, os);
-    return objects;
   }
 
   public ListOfObjects unmarshall(String fileName) throws JAXBException {
