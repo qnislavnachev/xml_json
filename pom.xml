@@ -3,18 +3,19 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.clouway</groupId>
-  <artifactId>MyProjectMaven</artifactId>
+  <artifactId>xml_json_Codec</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
+  <packaging>jar</packaging>
 
 
 
-  <name>MyProjectMaven</name>
+  <name>xml-json</name>
   <url>http://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+
 
 
 
@@ -38,9 +39,17 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>1.2.17</version>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.2.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-all</artifactId>
+      <version>1.3</version>
     </dependency>
   </dependencies>
+
+
+
 </project>
