@@ -13,9 +13,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * @author Vasil Mitov (v.mitov.clouway@gmail.com)
  */
 public class JsonCodecTest {
-  JsonCodec jsonCodec = new JsonCodec();
-  ListOfObjects listOfObjects = new ListOfObjects();
-  FileReaderForTest fileReaderForTest = new FileReaderForTest();
+  private JsonCodec jsonCodec = new JsonCodec();
+  private ListOfObjects listOfObjects = new ListOfObjects();
+  private FileReaderForTest fileReaderForTest = new FileReaderForTest();
 
   /**
    * HappyPath
