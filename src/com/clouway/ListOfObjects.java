@@ -2,6 +2,8 @@ package com.clouway;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,11 +17,15 @@ import java.util.List;
 public class ListOfObjects {
   public ListOfObjects() {
   }
-
+  @XmlElement(name = "product")
    private  List<Object> objects = new LinkedList<>();
 
   public void add(Object object) {
     objects.add(object);
+  }
+
+  public Object getObject(Integer i) {
+    return objects.get(i);
   }
 
   @Override
@@ -28,4 +34,7 @@ public class ListOfObjects {
             "objects=" + objects +
             '}';
   }
+
+
+
 }
