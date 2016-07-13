@@ -7,25 +7,39 @@ import java.io.StringWriter;
 
 public class XMLCodecConverter implements MessageCodec {
 
-    public void convertObjectToTextMessage(Object object, String url) throws JAXBException, IOException {
+    public void marshal(Object object, String url) {
         File file = new File(url);
-        JAXBContext context = JAXBContext.newInstance(object.getClass());
-        Marshaller contextMarshal = context.createMarshaller();
-        contextMarshal.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-        contextMarshal.marshal(object, file);
-
+        JAXBContext context = null;
         StringWriter writer = new StringWriter();
 
-        contextMarshal.marshal(object, writer);
+        try {
+            context = JAXBContext.newInstance(object.getClass());
 
-        writer.close();
+            Marshaller contextMarshal = context.createMarshaller();
+            contextMarshal.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            contextMarshal.marshal(object, file);
+
+            contextMarshal.marshal(object, writer);
+
+            writer.close();
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
     }
 
-    public Object convertTextMessageToObject(Object object ,String url) throws JAXBException, IOException {
-        JAXBContext context = JAXBContext.newInstance(object.getClass());
-        Unmarshaller contextUnmarshal = context.createUnmarshaller();
-        Object obj = contextUnmarshal.unmarshal(new File(url));
-        return obj;
+    public Object unmarshal(Class type , String url) {
+        JAXBContext context = null;
+        try {
+            context = JAXBContext.newInstance(type);
+            Unmarshaller contextUnmarshal = context.createUnmarshaller();
+            return contextUnmarshal.unmarshal(new File(url));
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

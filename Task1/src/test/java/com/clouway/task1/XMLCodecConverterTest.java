@@ -2,56 +2,39 @@ package com.clouway.task1;
 
 import org.junit.Test;
 
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.UnmarshalException;
-import java.io.IOException;
-
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class XMLCodecConverterTest {
 
+    private XMLCodecConverter converter = new XMLCodecConverter();
+
     @Test
-    public void convertSingleObjectToXMLMessageAndExtractIt() throws JAXBException, IOException {
-        XMLCodecConverter tool = new XMLCodecConverter();
-        Person testPerson = new Person("Uri","Male",23);
+    public void marshalAndUnmarshalObject() {
+        Person person = new Person("Uri","Male",23);
         Person receivingPerson = null;
 
-        tool.convertObjectToTextMessage(testPerson, "testFile2.xml");
-        receivingPerson = (Person) tool.convertTextMessageToObject(new Person(), "testFile2.xml");
+        converter.marshal(person, "testFile.xml");
+        receivingPerson = (Person) converter.unmarshal(Person.class, "testFile.xml");
 
-        assertTrue(receivingPerson.getName().equals("Uri"));
-        assertTrue(receivingPerson.getGender().equals("Male"));
-        assertTrue(receivingPerson.getAge() == 23);
+        assertEquals(person,receivingPerson);
     }
 
     @Test
-    public void convertSingleObjectsToXMLMessageAndExtractThem() throws JAXBException, IOException {
-        XMLCodecConverter tool = new XMLCodecConverter();
-        Person testPersonOne = new Person("Uri","Male",23);
-        Person testPersonTwo = new Person("Yoko","Female",23);
-        Persons persons = new Persons();
-        Persons receivingPersons = null;
-        persons.addPerson(testPersonOne);
-        persons.addPerson(testPersonTwo);
+    public void marshalAndUnmarshalListOfObjects() {
+        Person person1 = new Person("Uri","Male",23);
+        Person person2 = new Person("Yoko","Female",23);
+        People people = new People();
+        People receivingPeople = null;
+        people.addPerson(person1);
+        people.addPerson(person2);
 
-        tool.convertObjectToTextMessage(persons,"testFile.xml");
-        receivingPersons = (Persons) tool.convertTextMessageToObject(new Persons(), "testFile.xml");
+        converter.marshal(people,"testFile2.xml");
+        receivingPeople = (People) converter.unmarshal(People.class, "testFile2.xml");
 
-        assertTrue(receivingPersons.getPersonAtPosition(0).getName().equals("Uri"));
-        assertTrue(receivingPersons.getPersonAtPosition(0).getGender().equals("Male"));
-        assertTrue(receivingPersons.getPersonAtPosition(0).getAge() == 23);
+        Person dummy1 = receivingPeople.getPerson(0);
+        Person dummy2 = receivingPeople.getPerson(1);
 
-        assertTrue(receivingPersons.getPersonAtPosition(1).getName().equals("Yoko"));
-        assertTrue(receivingPersons.getPersonAtPosition(1).getGender().equals("Female"));
-        assertTrue(receivingPersons.getPersonAtPosition(1).getAge() == 23);
-    }
-
-
-    @Test(expected = UnmarshalException.class)
-    public void userTriesToUnMarshalUnExistingFile() throws JAXBException, IOException {
-        XMLCodecConverter tool = new XMLCodecConverter();
-        Person receivingPerson = null;
-
-        receivingPerson = (Person) tool.convertTextMessageToObject(new Person(), "testFile3.xml");
+        assertEquals(person1, dummy1);
+        assertEquals(person2, dummy2);
     }
 }

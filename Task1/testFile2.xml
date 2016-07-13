@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<person>
-    <age>23</age>
-    <gender>Male</gender>
-    <name>Uri</name>
-</person>
+<people>
+    <personList>
+        <age>23.0</age>
+        <gender>Male</gender>
+        <name>Uri</name>
+    </personList>
+    <personList>
+        <age>23.0</age>
+        <gender>Female</gender>
+        <name>Yoko</name>
+    </personList>
+</people>
