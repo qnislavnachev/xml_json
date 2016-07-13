@@ -25,7 +25,6 @@ public class XmlCodecTest {
     listOfObjects.add(new Product(1, "apple", 1.0d));
     listOfObjects.add(new Product(2, "pear", 2.2d));
     listOfObjects.add(new Product(3, "orange", 3.3d));
-
     xmlCodec.marshall(listOfObjects, "testXML");
     assertThat(fileReaderForTest.readFile("testXML.xml", StandardCharsets.UTF_8), is("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><products><product xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"product\"><id>1</id><productName>apple</productName><productPrice>1.0</productPrice></product><product xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"product\"><id>2</id><productName>pear</productName><productPrice>2.2</productPrice></product><product xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:type=\"product\"><id>3</id><productName>orange</productName><productPrice>3.3</productPrice></product></products>"));
   }
