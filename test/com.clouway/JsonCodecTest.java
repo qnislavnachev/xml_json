@@ -23,7 +23,7 @@ public class JsonCodecTest {
     listOfObjects.add(new Product(2, "pear", 2.0d));
     listOfObjects.add(new Product(3, "peach", 3.0d));
     jsonCodec.marshall(listOfObjects, "jsonMarshalledList");
-    assertThat(fileReaderForTest.readFile("jsonMarshalledList.json", StandardCharsets.UTF_8), is("{\"objects\":[{\"id\":1,\"productName\":\"apple\",\"productPrice\":1.0},{\"id\":2,\"productName\":\"pear\",\"productPrice\":2.0},{\"id\":3,\"productName\":\"peach\",\"productPrice\":3.0}]}"));
+    assertThat(fileReaderForTest.read("jsonMarshalledList.json", StandardCharsets.UTF_8), is("{\"objects\":[{\"id\":1,\"productName\":\"apple\",\"productPrice\":1.0},{\"id\":2,\"productName\":\"pear\",\"productPrice\":2.0},{\"id\":3,\"productName\":\"peach\",\"productPrice\":3.0}]}"));
   }
 
   @Test
