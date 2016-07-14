@@ -1,4 +1,4 @@
-package com.clouway.task1;
+package com.clouway.task2;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -17,6 +17,10 @@ public class People {
 
     public Person getPerson(int index){
         return personList.get(index);
+    }
+
+    public List<Person> getPersonList() {
+        return personList;
     }
 
     @Override
