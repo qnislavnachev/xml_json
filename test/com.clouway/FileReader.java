@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 /**
  * @author Vasil Mitov (v.mitov.clouway@gmail.com)
  */
-public class FileReaderForTest {
+public class FileReader {
   public String read(String path, Charset encoding)
           throws IOException {
     byte[] encoded = Files.readAllBytes(Paths.get(path));

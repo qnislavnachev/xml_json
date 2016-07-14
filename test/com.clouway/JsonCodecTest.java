@@ -15,7 +15,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class JsonCodecTest {
   private JsonCodec jsonCodec = new JsonCodec();
   private ListOfObjects listOfObjects = new ListOfObjects();
-  private FileReaderForTest fileReaderForTest = new FileReaderForTest();
+  private FileReader fileReader = new FileReader();
 
   @Test
   public void marshall() throws Exception {
@@ -23,7 +23,7 @@ public class JsonCodecTest {
     listOfObjects.add(new Product(2, "pear", 2.0d));
     listOfObjects.add(new Product(3, "peach", 3.0d));
     jsonCodec.marshall(listOfObjects, "jsonMarshalledList");
-    assertThat(fileReaderForTest.read("jsonMarshalledList.json", StandardCharsets.UTF_8), is("{\"objects\":[{\"id\":1,\"productName\":\"apple\",\"productPrice\":1.0},{\"id\":2,\"productName\":\"pear\",\"productPrice\":2.0},{\"id\":3,\"productName\":\"peach\",\"productPrice\":3.0}]}"));
+    assertThat(fileReader.read("jsonMarshalledList.json", StandardCharsets.UTF_8), is("{\"objects\":[{\"id\":1,\"productName\":\"apple\",\"productPrice\":1.0},{\"id\":2,\"productName\":\"pear\",\"productPrice\":2.0},{\"id\":3,\"productName\":\"peach\",\"productPrice\":3.0}]}"));
   }
 
   @Test
