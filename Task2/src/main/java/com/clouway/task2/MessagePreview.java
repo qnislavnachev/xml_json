@@ -23,20 +23,22 @@ public class MessagePreview {
         XMLCodecConverter xmlConverter = new XMLCodecConverter();
         User[] users = null;
 
-        if(args[0].equals("-type")){
-            if(args[1].equals("json") && args[3].equals("--printAverageStats")){
+        String converterType = args[1], fileName = args[2], typeCommand = args[0], methodCommand = args[3];
+
+        if(typeCommand.equals("-type")){
+            if(converterType.equals("json") && methodCommand.equals("--printAverageStats")){
 
                 try {
-                    users = (User[]) jsonConverter.unmarshal(User[].class, args[2]);
+                    users = (User[]) jsonConverter.unmarshal(User[].class, fileName);
                 } catch (FileNotFoundException e) {
                     System.out.println("The given path doesn't lead to the desired file!");
                 }
                 printAverageStats(users);
 
-            }else if(args[1].equals("xml") && args[3].equals("--printAverageStats")){
+            }else if(converterType.equals("xml") && methodCommand.equals("--printAverageStats")){
 
                 try {
-                    users = (User[]) xmlConverter.unmarshal(User[].class, args[2]);
+                    users = (User[]) xmlConverter.unmarshal(User[].class, fileName);
                 } catch (FileNotFoundException e) {
                     System.out.println("The given path doesn't lead to the desired file!");
                 }
