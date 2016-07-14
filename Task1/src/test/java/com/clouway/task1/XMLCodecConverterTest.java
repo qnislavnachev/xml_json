@@ -2,6 +2,8 @@ package com.clouway.task1;
 
 import org.junit.Test;
 
+import java.io.FileNotFoundException;
+
 import static org.junit.Assert.assertEquals;
 
 public class XMLCodecConverterTest {
@@ -9,7 +11,7 @@ public class XMLCodecConverterTest {
     private XMLCodecConverter converter = new XMLCodecConverter();
 
     @Test
-    public void marshalAndUnmarshalObject() {
+    public void marshalAndUnmarshal() throws FileNotFoundException {
         Person person = new Person("Uri","Male",23);
         Person receivingPerson = null;
 
@@ -20,7 +22,7 @@ public class XMLCodecConverterTest {
     }
 
     @Test
-    public void marshalAndUnmarshalListOfObjects() {
+    public void multipleConvertions() throws FileNotFoundException {
         Person person1 = new Person("Uri","Male",23);
         Person person2 = new Person("Yoko","Female",23);
         People people = new People();
@@ -38,5 +40,8 @@ public class XMLCodecConverterTest {
         assertEquals(person2, dummy2);
     }
 
-
+    @Test(expected = FileNotFoundException.class)
+    public void convertFromNonExistingFile() throws FileNotFoundException {
+        Person dummy = (Person) converter.unmarshal(Person.class,"testFile3.xml");
+    }
 }

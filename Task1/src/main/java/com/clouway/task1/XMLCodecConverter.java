@@ -2,6 +2,7 @@ package com.clouway.task1;
 
 import javax.xml.bind.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringWriter;
 
@@ -22,16 +23,19 @@ public class XMLCodecConverter implements MessageCodec {
 
             contextMarshal.marshal(object, writer);
 
-            writer.close();
         } catch (JAXBException e) {
             e.printStackTrace();
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        }finally {
+            try {
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }
 
-    public Object unmarshal(Class type , String url) {
+    public Object unmarshal(Class type , String url) throws FileNotFoundException {
         JAXBContext context = null;
         try {
             context = JAXBContext.newInstance(type);
@@ -39,7 +43,7 @@ public class XMLCodecConverter implements MessageCodec {
             return contextUnmarshal.unmarshal(new File(url));
         } catch (JAXBException e) {
             e.printStackTrace();
+            throw new FileNotFoundException();
         }
-        return 0;
     }
 }

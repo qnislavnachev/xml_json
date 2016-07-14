@@ -1,6 +1,7 @@
 package com.clouway.task1;
 
 import javax.xml.bind.JAXBException;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public interface MessageCodec {
@@ -20,5 +21,5 @@ public interface MessageCodec {
      * @param url
      * @return
      */
-    Object unmarshal(Class type, String url);
+    Object unmarshal(Class type, String url) throws FileNotFoundException;
 }
