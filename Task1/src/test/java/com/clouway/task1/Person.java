@@ -5,7 +5,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Person {
-    private String name, gender;
+    private String name;
+    private String gender;
     private double age;
 
     public Person(String name, String gender, int age) {

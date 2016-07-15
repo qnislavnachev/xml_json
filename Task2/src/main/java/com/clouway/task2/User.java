@@ -1,12 +1,13 @@
 package com.clouway.task2;
 
 public class User {
-    private String firstName, lasteName;
+    private String firstName;
+    private String lastName;
     private int age;
 
     public User(String firstName, String lasteName, int age) {
         this.firstName = firstName;
-        this.lasteName = lasteName;
+        this.lastName = lasteName;
         this.age = age;
     }
 
@@ -15,7 +16,7 @@ public class User {
     }
 
     public String getLasteName() {
-        return lasteName;
+        return lastName;
     }
 
     public int getAge() {
@@ -27,7 +28,7 @@ public class User {
     }
 
     public void setLasteName(String lasteName) {
-        this.lasteName = lasteName;
+        this.lastName = lasteName;
     }
 
     public void setAge(int age) {
@@ -38,7 +39,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "firstName='" + firstName + '\'' +
-                ", lasteName='" + lasteName + '\'' +
+                ", lasteName='" + lastName + '\'' +
                 ", age=" + age +
                 '}';
     }
@@ -52,6 +53,6 @@ public class User {
 
         if (age != user.age) return false;
         if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
-        return lasteName != null ? lasteName.equals(user.lasteName) : user.lasteName == null;
+        return lastName != null ? lastName.equals(user.lastName) : user.lastName == null;
     }
 }

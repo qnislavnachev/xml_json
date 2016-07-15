@@ -37,10 +37,13 @@ public class MessagePreview {
         User[] users = null;
         People people = null;
 
-        String converterType = args[1], fileName = args[2], typeCommand = args[0], methodCommand = args[3];
+        String type = args[0];
+        String converter = args[1];
+        String fileName = args[2];
+        String method = args[3];
 
-        if(typeCommand.equals("-type")){
-            if(converterType.equals("json") && methodCommand.equals("--printAverageStats")){
+        if(type.equals("-type")){
+            if(converter.equals("json") && method.equals("--printAverageStats")){
 
                 try {
                     users = (User[]) jsonConverter.unmarshal(User[].class, fileName);
@@ -49,7 +52,7 @@ public class MessagePreview {
                 }
                 printAverageStats(users);
 
-            }else if(converterType.equals("xml") && methodCommand.equals("--printAverageStats")){
+            }else if(converter.equals("xml") && method.equals("--printAverageStats")){
 
                 try {
                     people = (People) xmlConverter.unmarshal(People.class, fileName);
