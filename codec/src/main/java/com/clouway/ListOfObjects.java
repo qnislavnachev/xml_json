@@ -3,7 +3,6 @@ package com.clouway;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,13 +11,13 @@ import java.util.List;
  * @author Vasil Mitov (v.mitov.clouway@gmail.com)
  */
 
-@XmlRootElement(name = "products")
+@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ListOfObjects {
   public ListOfObjects() {
   }
 
-  @XmlElement(name = "product")
+  @XmlElement()
   private List<Object> objects = new LinkedList<Object>();
 
   public void add(Object object) {
@@ -34,5 +33,12 @@ public class ListOfObjects {
     return "ListOfObjects{" +
             "objects=" + objects +
             '}';
+  }
+  public Integer getSize(){
+    return objects.size();
+  }
+
+  public List getList(){
+    return this.objects;
   }
 }

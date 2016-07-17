@@ -22,10 +22,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="xml_json" />
+        <module name="codec" />
+        <module name="messagepreview" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="codec" target="1.5" />
+      <module name="messagepreview" target="1.5" />
       <module name="xml_json" target="1.5" />
     </bytecodeTargetLevel>
   </component>

@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/codec/codec.iml" filepath="$PROJECT_DIR$/codec/codec.iml" />
+      <module fileurl="file://$PROJECT_DIR$/messagepreview/messagepreview.iml" filepath="$PROJECT_DIR$/messagepreview/messagepreview.iml" />
       <module fileurl="file://$PROJECT_DIR$/xml_json.iml" filepath="$PROJECT_DIR$/xml_json.iml" />
     </modules>
   </component>
