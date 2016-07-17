@@ -3,13 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <dependencies>
-    <dependency>
-      <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
-      <version>2.7</version>
-    </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
@@ -20,28 +14,23 @@
       <artifactId>jackson-databind</artifactId>
       <version>2.8.0</version>
     </dependency>
-
   </dependencies>
-
   <parent>
     <groupId>com.clouway</groupId>
     <artifactId>xml_json_Codec</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-
   <groupId>com.clouway</groupId>
   <artifactId>codec</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
-
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
-   <resources>
-     <resource>
-       <directory>src/main/resourses </directory>
-     </resource>
-   </resources>
-
+    <resources>
+      <resource>
+        <directory>src/main/resourses</directory>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
@@ -62,5 +51,5 @@
         </executions>
       </plugin>
     </plugins>
- </build>
+  </build>
 </project>

@@ -1,9 +1,7 @@
 package com.clouway;
 
-import javax.jws.soap.SOAPBinding.Use;
 import javax.xml.bind.JAXBException;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Field;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -36,7 +34,6 @@ public class Operation {
     }
     return operationResult;
   }
-
 
   private String printAverageStats(List users) {
     Integer averageStats = 0;

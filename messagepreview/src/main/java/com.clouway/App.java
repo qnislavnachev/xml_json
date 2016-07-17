@@ -8,9 +8,7 @@ import java.io.FileNotFoundException;
  */
 public class App {
   public static void main(String[] args) throws FileNotFoundException, JAXBException {
-    Operation operation=new Operation(args);
+    Operation operation = new Operation(args);
     System.out.println(operation.compile());
-
   }
-
 }

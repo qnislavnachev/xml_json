@@ -13,8 +13,9 @@ public class User {
 
   public User() {
   }
+
   @JsonCreator
-  public User(@JsonProperty("firstName")String firstName,@JsonProperty("lastName") String lastName, @JsonProperty("age")Integer age) {
+  public User(@JsonProperty("firstName") String firstName, @JsonProperty("lastName") String lastName, @JsonProperty("age") Integer age) {
     this.firstname = firstName;
     this.lastname = lastName;
     this.age = age;

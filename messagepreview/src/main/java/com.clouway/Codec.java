@@ -22,12 +22,11 @@ public class Codec {
     if (fileExtention.equals("json")) {
       return unmarshallFileJson(filename);
     }
-    if (fileExtention.equals("xml")){
+    if (fileExtention.equals("xml")) {
       return unmarshallFileXML(filename);
     }
     return users;
   }
-
 
   private List<User> unmarshallFileJson(String filename) throws FileNotFoundException {
     JsonCodec jsonCodec = new JsonCodec();

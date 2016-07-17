@@ -34,11 +34,12 @@ public class ListOfObjects {
             "objects=" + objects +
             '}';
   }
-  public Integer getSize(){
+
+  public Integer getSize() {
     return objects.size();
   }
 
-  public List getList(){
+  public List getList() {
     return this.objects;
   }
 }
