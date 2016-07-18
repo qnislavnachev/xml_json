@@ -9,8 +9,8 @@ import java.util.List;
  * @author Vasil Mitov (v.mitov.clouway@gmail.com)
  */
 public class Operation {
-  String[] arguments;
-  Codec codec = new Codec();
+  private String[] arguments;
+  private CodecHandler codecHandler = new CodecHandler();
 
   public Operation(String[] arguments) {
     this.arguments = arguments;
@@ -19,9 +19,8 @@ public class Operation {
   public String compile() throws FileNotFoundException, JAXBException {
     String operationResult = "";
     String extention = "";
-    XmlCodec xmlCodec = new XmlCodec(new ListOfObjects(), new User());
-    JsonCodec jsonCodec = new JsonCodec();
     if (arguments[0].equals("-type")) {
+
       if (arguments[1].equals("xml")) {
         extention = arguments[1];
       }
@@ -30,7 +29,7 @@ public class Operation {
       }
     }
     if (arguments[3].equals("--printAverageStats")) {
-      operationResult = printAverageStats(codec.unmarshallFile(extention, arguments[2]));
+      operationResult = printAverageStats(codecHandler.unmarshallFile(arguments[2]));
     }
     return operationResult;
   }

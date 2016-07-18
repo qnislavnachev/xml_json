@@ -9,11 +9,11 @@ import java.io.InputStream;
 /**
  * @author Vasil Mitov (v.mitov.clouway@gmail.com)
  */
-public class JsonCodec {
+public class JsonCodec implements Codec  {
   private ObjectMapper mapper = new ObjectMapper();
 
-  public String marshall(Object obj) throws IOException {
-    return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
+  public String marshall(Object object) throws IOException {
+    return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(object);
   }
 
   public <T> T unmarshall(final TypeReference<T> type, InputStream stream) throws IOException {

@@ -1,42 +1,33 @@
 package com.clouway;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringWriter;
 
 
 /**
  * @author Vasil Mitov (v.mitov.clouway@gmail.com)
  */
-public class XmlCodec {
-  private ListOfObjects container;
-  private Object containedObjects;
-
-  public XmlCodec(ListOfObjects container, Object containedObjects) {
-    this.container = container;
-    this.containedObjects = containedObjects;
-  }
-
-  public void marshall(ListOfObjects objects, String fileName) throws JAXBException, FileNotFoundException {
-    JAXBContext jaxbContext = JAXBContext.newInstance(container.getClass(), containedObjects.getClass());
+public class XmlCodec implements Codec {
+  public String marshall(Object object) throws IOException, JAXBException {
+    JAXBContext jaxbContext = JAXBContext.newInstance(object.getClass());
     Marshaller marshaller = jaxbContext.createMarshaller();
-    OutputStream os = new FileOutputStream(new File(fileName + ".xml"));
-    marshaller.marshal(objects, os);
+    marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+    StringWriter stringWriter = new StringWriter();
+    marshaller.marshal(object, stringWriter);
+    return stringWriter.toString();
   }
 
-  public ListOfObjects unmarshall(String fileName) throws JAXBException {
-    JAXBContext jaxbContext = JAXBContext.newInstance(container.getClass(), containedObjects.getClass());
-    Unmarshaller unMarshaller = jaxbContext.createUnmarshaller();
-    ListOfObjects unmarshalledList = new ListOfObjects();
-    return unmarshalledList = (ListOfObjects) unMarshaller.unmarshal(new File(fileName + ".xml"));
+  public <T> T unmarshall(TypeReference<T> type, InputStream stream) throws IOException, JAXBException {
+    Class<? extends TypeReference> aClass = type.getClass();
+    JAXBContext jaxbContext = JAXBContext.newInstance(aClass);
+    Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+    return (T) unmarshaller.unmarshal(stream);
   }
-
-
 }
