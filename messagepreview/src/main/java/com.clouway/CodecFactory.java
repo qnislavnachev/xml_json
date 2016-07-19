@@ -1,14 +1,17 @@
 package com.clouway;
-import java.io.InputStream;
-
 
 /**
  * @author Vasil Mitov (v.mitov.clouway@gmail.com)
  */
 public class CodecFactory {
-
-  public static Codec setupCodec(String fileExtention) {
-    Codec codec=null;
+  /**
+   * A codec geter that takes a fileExtention as a parameter and makes the needed codec.
+   *
+   * @param fileExtention
+   * @return An XML or Json codec.
+   */
+  public static Codec getCodec(String fileExtention) {
+    Codec codec = null;
     if (fileExtention.equals("xml")) {
       return codec = new XmlCodec();
     } else if (fileExtention.equals("json")) {

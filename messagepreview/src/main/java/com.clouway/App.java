@@ -7,7 +7,7 @@ import java.io.IOException;
  */
 public class App {
   public static void main(String[] args) throws IOException {
-    Run Run = new Run(args);
-    System.out.println(Run.compile());
+    Run run = new Run(args);
+    System.out.println(run.compile());
   }
 }

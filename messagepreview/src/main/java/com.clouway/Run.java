@@ -1,31 +1,31 @@
 package com.clouway;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.sun.org.apache.bcel.internal.classfile.Code;
 
-import javax.xml.bind.JAXBException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
  * @author Vasil Mitov (v.mitov.clouway@gmail.com)
  */
-public class Run {
+class Run {
   private String[] arguments;
-  private Codec codec;
 
-  public Run(String[] arguments) {
+  Run(String[] arguments) {
     this.arguments = arguments;
   }
 
-  public String compile() throws FileNotFoundException {
-    String type = arguments[0];
+  /**
+   * Takes the args[] from public static void main and depending on them makes a codec and dose an operation print average stats.
+   * @return A string representation of the result of the operation.
+   * @throws FileNotFoundException
+   */
+  String compile() throws FileNotFoundException {
     String extention = arguments[1];
     String file = arguments[2];
-    codec = CodecFactory.setupCodec(extention);
+    Codec codec = CodecFactory.getCodec(extention);
     List<User> list = codec.unmarshall(new TypeReference<List<User>>() {
     }, fileStream(file));
     return printAverageStats(list);
