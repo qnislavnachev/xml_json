@@ -10,6 +10,9 @@ out/
 *.jar
 *.war
 *.ear
+*.iml
+gradlew
+gradlew.bat
 
 # User-specific stuff:
 .idea/workspace.xml
@@ -18,6 +21,11 @@ out/
 .idea/vcs.xml
 .idea/misc.xml
 .idea/jsLibraryMappings.xml
+.idea
+.gradle
+gradle
+lib
+build
 
 # File-based project format:
 *.iws

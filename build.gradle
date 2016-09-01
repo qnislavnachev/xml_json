@@ -1,0 +1,15 @@
+group 'clouway'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile files('lib/xstream.jar')
+    compile files('lib/gson-2.6.2.jar')
+}
