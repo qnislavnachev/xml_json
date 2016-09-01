@@ -3,7 +3,7 @@ package xmlandjson;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
-public class XmlCodec implements MessageCode {
+public class XmlCodec implements MessageCodec {
     private XStream xStream;
 
     public XmlCodec() {

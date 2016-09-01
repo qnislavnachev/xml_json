@@ -1,6 +1,6 @@
 package xmlandjson;
 
-public interface MessageCode {
+public interface MessageCodec {
     /**
      * marshall object
      * @param obj
