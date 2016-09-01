@@ -3,12 +3,11 @@ package xmlandjson;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
-public class XmlCodec implements MessageCodec {
+public class XmlCodec implements Codec {
     private XStream xStream;
 
     public XmlCodec() {
         xStream = new XStream(new DomDriver());
-        xStream.alias("person", Person.class);
     }
 
     /**

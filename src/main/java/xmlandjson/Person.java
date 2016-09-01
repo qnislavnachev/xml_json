@@ -1,5 +1,8 @@
 package xmlandjson;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+@XStreamAlias("person")
 public class Person {
     public String name;
     public int age;
@@ -12,10 +15,5 @@ public class Person {
         this.name = name;
         this.age = age;
         this.gender = gender;
-    }
-
-    @Override
-    public String toString() {
-        return "Name: " + name + ", Age: " + age + ", Gender: " + gender;
     }
 }

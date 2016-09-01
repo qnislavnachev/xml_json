@@ -10,18 +10,18 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 public class JsonCodecTest {
-    Person person = new Person("Qnis", 23, "male");
-    JsonCodec codec = new JsonCodec();
+    private Person person = new Person("Qnis", 23, "male");
+    private JsonCodec codec = new JsonCodec();
 
     @Test
-    public void marshall() throws Exception {
+    public void toStringJson() throws Exception {
         String expected = "{\"name\":\"Qnis\",\"age\":23,\"gender\":\"male\"}";
         String actual = codec.marshall(person);
         assertThat(actual, is(expected));
     }
 
     @Test
-    public void unmarshall() throws Exception {
+    public void toObjectFromJson() throws Exception {
         String json = codec.marshall(person);
         Person actual = codec.unmarshall(json, Person.class);
         Person expected = person;
@@ -32,7 +32,7 @@ public class JsonCodecTest {
     }
 
     @Test
-    public void bigData() throws Exception {
+    public void unmarshallingBigData() throws Exception {
         List<Person> listOfPerson = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             listOfPerson.add(person);

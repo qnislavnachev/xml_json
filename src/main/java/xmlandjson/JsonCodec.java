@@ -2,7 +2,7 @@ package xmlandjson;
 
 import com.google.gson.Gson;
 
-public class JsonCodec implements MessageCodec {
+public class JsonCodec implements Codec {
     private Gson gson;
 
     public JsonCodec() {

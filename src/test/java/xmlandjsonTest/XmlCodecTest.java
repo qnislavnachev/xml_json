@@ -17,14 +17,14 @@ public class XmlCodecTest {
     private XmlCodec codec = new XmlCodec();
 
     @Test
-    public void marshall() throws Exception {
+    public void toStringXml() throws Exception {
         String expected = "<person>\n" + "  <name>Qnis</name>\n" + "  <age>23</age>\n" + "  <gender>male</gender>\n" + "</person>";
         String actual = codec.marshall(person);
         assertThat(actual, is(expected));
     }
 
     @Test
-    public void unmarshall() throws Exception {
+    public void toObjectFromXml() throws Exception {
         String xml = codec.marshall(person);
         Person actual = codec.unmarshall(xml, null);
         Person expected = person;
@@ -35,7 +35,7 @@ public class XmlCodecTest {
     }
 
     @Test
-    public void bigData() throws Exception {
+    public void unmarshallingBigData() throws Exception {
         List<Person> listOfPersons = new ArrayList<>();
         for (int i = 0; i < 200; i++) {
             listOfPersons.add(person);
