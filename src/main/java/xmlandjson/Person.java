@@ -4,9 +4,9 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 @XStreamAlias("person")
 public class Person {
-    public String name;
-    public int age;
-    public String gender;
+    private String name;
+    private int age;
+    private String gender;
 
     public Person() {
     }
@@ -15,5 +15,17 @@ public class Person {
         this.name = name;
         this.age = age;
         this.gender = gender;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getGender() {
+        return gender;
     }
 }

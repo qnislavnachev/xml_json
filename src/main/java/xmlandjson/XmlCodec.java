@@ -8,6 +8,7 @@ public class XmlCodec implements Codec {
 
     public XmlCodec() {
         xStream = new XStream(new DomDriver());
+        xStream.processAnnotations(Person.class);
     }
 
     /**

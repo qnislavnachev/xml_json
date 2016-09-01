@@ -6,6 +6,7 @@ import xmlandjson.Person;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
@@ -22,25 +23,25 @@ public class JsonCodecTest {
 
     @Test
     public void toObjectFromJson() throws Exception {
-        String json = codec.marshall(person);
+        String json = "{\"name\":\"Qnis\",\"age\":23,\"gender\":\"male\"}";
         Person actual = codec.unmarshall(json, Person.class);
         Person expected = person;
         // test can be done with 1 assert, but i decide that is more readable and easy understandable;
-        assertThat(actual.name, is(expected.name));
-        assertThat(actual.age, is(expected.age));
-        assertThat(actual.gender, is(expected.gender));
+        assertThat(actual.getName(), is(expected.getName()));
+        assertThat(actual.getAge(), is(expected.getAge()));
+        assertThat(actual.getGender(), is(expected.getGender()));
     }
 
     @Test
     public void unmarshallingBigData() throws Exception {
-        List<Person> listOfPerson = new ArrayList<>();
-        for (int i = 0; i < 100; i++) {
-            listOfPerson.add(person);
+        String xml = "[{\"name\":\"Qnis\",\"age\":23,\"gender\":\"male\"}";
+        for (int i = 0; i < 9999; i++) {
+            xml += ",{\"name\":\"Qnis\",\"age\":23,\"gender\":\"male\"}";
         }
-        String json = codec.marshall(listOfPerson);
-        List list = codec.unmarshall(json, List.class);
+        xml += "]";
+        List list = codec.unmarshall(xml, List.class);
         int actual = list.size();
-        int expected = 100;
+        int expected = 10000;
         assertThat(actual, is(expected));
     }
 }
