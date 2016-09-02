@@ -3,12 +3,14 @@ package xmlandjson;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+import java.util.List;
+
 public class XmlCodec implements Codec {
     private XStream xStream;
 
     public XmlCodec() {
         xStream = new XStream(new DomDriver());
-        xStream.processAnnotations(Person.class);
+        xStream.autodetectAnnotations(true);
     }
 
     /**
@@ -18,6 +20,7 @@ public class XmlCodec implements Codec {
      */
     @Override
     public String marshall(Object obj) {
+        xStream.processAnnotations(obj.getClass());
         return xStream.toXML(obj);
     }
 
@@ -29,8 +32,13 @@ public class XmlCodec implements Codec {
      */
     @Override
     public <T> T unmarshall(String string, Class<T> tClass) {
+        xStream.processAnnotations(tClass);
         return (T) xStream.fromXML(string);
     }
 
+    public List<Person> unmarshall(String string) {
+        xStream.alias("person", Person.class);
+        return (List<Person>) xStream.fromXML(string);
+    }
 }
 

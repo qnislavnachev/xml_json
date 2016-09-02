@@ -4,12 +4,9 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 
 @XStreamAlias("person")
 public class Person {
-    private String name;
-    private int age;
-    private String gender;
-
-    public Person() {
-    }
+    public final String name;
+    public final int age;
+    public final String gender;
 
     public Person(String name, int age, String gender) {
         this.name = name;
@@ -17,15 +14,15 @@ public class Person {
         this.gender = gender;
     }
 
-    public String getName() {
-        return name;
-    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-    public int getAge() {
-        return age;
-    }
+        Person person = (Person) o;
 
-    public String getGender() {
-        return gender;
+        if (age != person.age) return false;
+        if (name != null ? !name.equals(person.name) : person.name != null) return false;
+        return gender != null ? gender.equals(person.gender) : person.gender == null;
     }
 }

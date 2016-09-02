@@ -1,5 +1,6 @@
 package xmlandjsonTest;
 
+
 import org.junit.Test;
 
 import xmlandjson.Person;
@@ -12,11 +13,11 @@ import static org.junit.Assert.*;
 
 public class XmlCodecTest {
 
-    private Person person = new Person("Qnis", 23, "male");
     private XmlCodec codec = new XmlCodec();
 
     @Test
     public void toStringXml() throws Exception {
+        Person person = new Person("Qnis", 23, "male");
         String expected = "<person>\n" + "  <name>Qnis</name>\n" + "  <age>23</age>\n" + "  <gender>male</gender>\n" + "</person>";
         String actual = codec.marshall(person);
         assertThat(actual, is(expected));
@@ -24,23 +25,23 @@ public class XmlCodecTest {
 
     @Test
     public void toObjectFromXml() throws Exception {
+        Person person = new Person("Qnis", 23, "male");
         String xml = "<person>\n" + "  <name>Qnis</name>\n" + "  <age>23</age>\n" + "  <gender>male</gender>\n" + "</person>";
-        Person actual = codec.unmarshall(xml, null);
+        Person actual = codec.unmarshall(xml, Person.class);
         Person expected = person;
-        // test can be done with 1 assert, but i decide that is more readable and easy understandable;
-        assertThat(actual.getName(), is(expected.getName()));
-        assertThat(actual.getAge(), is(expected.getAge()));
-        assertThat(actual.getGender(), is(expected.getGender()));
+        assertThat(actual, is(expected));
     }
 
     @Test
     public void unmarshallingBigData() throws Exception {
-        String xml = "<list>";
+        StringBuilder builder = new StringBuilder();
+        builder.append("<list>\n");
         for (int i = 0; i < 10000; i++) {
-            xml += "<person>\n" + "  <name>Qnis</name>\n" + "  <age>23</age>\n" + "  <gender>male</gender>\n" + "</person>";
+            builder.append(" <person>\n" + "  <name>Qnis</name>\n" + "  <age>23</age>\n" + "  <gender>male</gender>\n" + "</person>\n");
         }
-        xml += "</list>";
-        List list = codec.unmarshall(xml, List.class);
+        builder.append("</list>");
+        String xml = builder.toString();
+        List list = codec.unmarshall(xml);
         int actual = list.size();
         int expected = 10000;
         assertThat(actual, is(expected));
