@@ -2,15 +2,17 @@ package xmlandjson;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
-
-import java.util.List;
+import java.io.FileReader;
+import java.lang.reflect.Type;
 
 public class XmlCodec implements Codec {
     private XStream xStream;
 
     public XmlCodec() {
         xStream = new XStream(new DomDriver());
-        xStream.autodetectAnnotations(true);
+        // here I dont know why bigData test dont work without it.
+        // I will check it out and try to fix it.
+        xStream.alias("person", Person.class);
     }
 
     /**
@@ -36,9 +38,18 @@ public class XmlCodec implements Codec {
         return (T) xStream.fromXML(string);
     }
 
-    public List<Person> unmarshall(String string) {
-        xStream.alias("person", Person.class);
-        return (List<Person>) xStream.fromXML(string);
+    /**
+     * unmarshall xml file into object
+     * @param reader
+     * @param type
+     * @param <T>
+     * @return object
+     */
+    @Override
+    public <T> T unmarshallFile(FileReader reader, Type type) {
+        xStream.processAnnotations(type.getClass());
+        return (T) xStream.fromXML(reader);
     }
+
 }
 
